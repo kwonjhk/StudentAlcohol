@@ -1,0 +1,49 @@
+---
+title: "STOR320 Data Import"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(readr)
+library(tidyverse)
+```
+
+```{r}
+student_por <- read_csv("~/Downloads/STOR320/student-por.csv")
+```
+
+```{r}
+any(is.na(student_por))
+```
+Thus, there are no explicitly missing values.
+
+```{r}
+student_por = student_por %>%
+  mutate(schoolsup = ifelse(schoolsup=="yes", 1, 0), 
+         famsup = ifelse(famsup=="yes", 1, 0),
+         paid = ifelse(paid=="yes", 1, 0),
+         activities = ifelse(activities=="yes", 1, 0),
+         nursery = ifelse(nursery=="yes", 1, 0),
+         higher = ifelse(higher=="yes", 1, 0),
+         internet = ifelse(internet=="yes", 1, 0),
+         romantic = ifelse(romantic=="yes", 1, 0),
+         studytime = 10*studytime,
+         famrel = as.factor(famrel),
+         freetime = as.factor(freetime),
+         goout = as.factor(goout), 
+         Dalc = as.factor(Dalc),
+         Walc = as.factor(Walc),
+         health = as.factor(health),
+         Medu = factor(Medu, 
+                       levels = c(0,1,2,3,4), 
+                       labels = c("0","1","2","3","4")),
+         Fedu = factor(Fedu, 
+                       levels = c(0,1,2,3,4), 
+                       labels = c("0","1","2","3","4"))
+         )
+```
+
+```{r}
+write.csv(student_por, "studalc_por.csv")
+```
