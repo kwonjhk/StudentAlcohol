@@ -1,5 +1,5 @@
 ---
-title: "STOR320 Data Import"
+title: "student-por cleaning"
 output: html_document
 ---
 
@@ -16,11 +16,12 @@ student_por <- read_csv("~/Downloads/STOR320/student-por.csv")
 ```{r}
 any(is.na(student_por))
 ```
-Thus, there are no explicitly missing values.
+
+There are no explicitly missing values.
 
 ```{r}
 student_por = student_por %>%
-  mutate(schoolsup = ifelse(schoolsup=="yes", 1, 0), 
+  mutate(schoolsup = ifelse(schoolsup=="yes", 1, 0), #convert yes/no to 1/0
          famsup = ifelse(famsup=="yes", 1, 0),
          paid = ifelse(paid=="yes", 1, 0),
          activities = ifelse(activities=="yes", 1, 0),
@@ -28,14 +29,14 @@ student_por = student_por %>%
          higher = ifelse(higher=="yes", 1, 0),
          internet = ifelse(internet=="yes", 1, 0),
          romantic = ifelse(romantic=="yes", 1, 0),
-         studytime = 10*studytime,
-         famrel = as.factor(famrel),
+         studytime = 10*studytime, #change 1 = 10 hours to 1 = 1 hour
+         famrel = as.factor(famrel), #convert numbers to factor levels
          freetime = as.factor(freetime),
          goout = as.factor(goout), 
          Dalc = as.factor(Dalc),
          Walc = as.factor(Walc),
          health = as.factor(health),
-         Medu = factor(Medu, 
+         Medu = factor(Medu, #convert education levels to factor levels
                        levels = c(0,1,2,3,4), 
                        labels = c("0","1","2","3","4")),
          Fedu = factor(Fedu, 
@@ -43,6 +44,8 @@ student_por = student_por %>%
                        labels = c("0","1","2","3","4"))
          )
 ```
+
+Then, export the reformatted data into a .csv file:
 
 ```{r}
 write.csv(student_por, "studalc_por.csv")
