@@ -10,6 +10,7 @@ library(tidyverse)
 ```
 
 ```{r}
+#change to the local file address of student-por.csv
 student_por <- read_csv("~/Downloads/STOR320/student-por.csv")
 ```
 
