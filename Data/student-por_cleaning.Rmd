@@ -11,13 +11,12 @@ library(tidyverse)
 
 ```{r}
 #change to the local file address of student-por.csv
-student_por <- read_csv("~/Downloads/STOR320/student-por.csv")
+student_por <- data.table::fread("~/Downloads/STOR320/student-por.csv", stringsAsFactors=TRUE)
 ```
 
 ```{r}
 any(is.na(student_por))
 ```
-
 There are no explicitly missing values.
 
 ```{r}
@@ -46,8 +45,7 @@ student_por = student_por %>%
          )
 ```
 
-Then, export the reformatted data into a .csv file:
-
+Then, export the reformatted data into a .rds file to preserve column types:
 ```{r}
-write.csv(student_por, "studalc_por.csv")
+write_rds(student_por, "studalc_por.rds")
 ```
