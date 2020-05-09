@@ -1,6 +1,6 @@
 ---
 title: "Final Paper"
-author: "Jinhyun Kwon STOR320.002 Group 13"
+author: "STOR320.002 Group 13"
 date: "`r format(Sys.time(), '%B %d, %Y')`"
 output: html_document
 ---
@@ -27,6 +27,8 @@ set.seed(1)
 test = sample(1:nrow(studalc), 100)
 
 ```
+
+This project was a collaboration with the following group members: Jinhyun Kwon, Drew Robinson, Clement Li, Xiangman Zhao, and Matthew Donnalley.
 
 # INTRODUCTION
 
@@ -118,7 +120,6 @@ Our first analysis addresses the question: which set of variables, the behaviora
 Prior to any model training, the data was split into a training and test set randomly; the training set consisted of 549 observations, and the test set contained the remaining 100 observations. The logistic regression models were fit without any variable selection. The KNN models were tuned using 10-fold cross-validation to find the optimal value for K. For the random forest models, the optimal number of variables in each decision tree was selected using out-of-bag error. The models were tuned and trained on the training set, and their performances were evaluated on the test set; test error was measured as the misclassification rate, the rate at which a model incorrectly classifies an observation.
 
 
-Q1:
 ```{r echo = FALSE, warning = FALSE}
 glm1 = glm(G4~Alc+goout + freetime +romantic +activities +health, family = binomial, data = studalc[-test,])
 
@@ -183,7 +184,7 @@ q1.models = c("glm.bv", "glm.bg", "glm.bv2", "glm.bg2",
 fills=c("Logistic Regression","Logistic Regression","Logistic Regression","Logistic Regression","KNN","KNN","Random Forests","Random Forests")
 
 ftable=data.frame(q1.models,G4.errors,fills)
-ftable$q1.models=factor(ftable$q1.models,levels(ftable$q1.models)[c(3,1,5,8,7,6,2,4)])
+ftable$q1.models=factor(ftable$q1.models,levels(ftable$q1.models)[c(3,1,5,8,7,6,4,2)])
 ftable %>% 
 ggplot() + geom_col(aes(x=q1.models,y=G4.errors,fill=factor(fills)))+ scale_fill_discrete(name = "Model Type", labels = c("KNN","Logistic Regression","Random Forest"))+
   ggtitle("Model Comparisons by Misclassification Rate")+
