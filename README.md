@@ -11,7 +11,11 @@ kwonjhk@gmail.com or jinhyun@live.unc.edu
 ### Authors
 
 Jinhyun Kwon
+
 Drew Robinson
+
 Clement Li
+
 Xiangman Zhao
+
 Matthew Donnalley
