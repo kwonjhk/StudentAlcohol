@@ -9,3 +9,9 @@ R code and files used for analysis of the Student Alcohol Consumption dataset (h
 kwonjhk@gmail.com or jinhyun@live.unc.edu
 
 ### Authors
+
+Jinhyun Kwon
+Drew Robinson
+Clement Li
+Xiangman Zhao
+Matthew Donnalley
